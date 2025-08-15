@@ -3,67 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CalCalm - Recuento de Calorías y Rutinas</title>
+    <title>PrimeX - Generador de Rutinas de Entrenamiento</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>CalCalm</h1>
 
-        <!-- Formulario de datos personales -->
-        <div class="card">
-            <h2>Datos Personales</h2>
-            <form id="personalDataForm">
-                <input type="number" id="edad" placeholder="Edad" required>
-                <input type="number" id="altura" placeholder="Altura (cm)" required>
-                <input type="number" id="peso" placeholder="Peso (kg)" required>
-                <select id="objetivo">
-                    <option value="">Selecciona tu objetivo</option>
-                    <option value="perder">Perder peso</option>
-                    <option value="ganar">Ganar peso</option>
-                    <option value="mantener">Mantener peso</option>
-                </select>
-                <button type="submit">Calcular calorías</button>
-            </form>
-            <p class="exercise-specs" id="caloriasResult"></p>
-        </div>
+        <!-- HEADER -->
+        <header class="header">
+            <div class="logo">
+                <h1>PrimeX</h1>
+                <p>Entrena como un profesional</p>
+            </div>
+        </header>
 
-        <!-- Apartado de rutinas -->
-        <div class="card">
-            <h2>Rutinas Personalizadas</h2>
-            <form id="rutinaForm">
-                <select id="deporte">
-                    <option value="">Selecciona un deporte</option>
-                    <option value="calistenia">Calistenia</option>
-                    <option value="gym">Gym</option>
-                    <option value="amrap">AMRAP</option>
-                    <option value="basket">Basket</option>
-                    <option value="futbol">Fútbol</option>
-                    <option value="natacion">Natación</option>
-                    <option value="voley">Vóley</option>
-                    <option value="bici">Bici</option>
-                    <option value="boxeo">Boxeo</option>
-                    <option value="artesmarciales">Artes Marciales</option>
-                </select>
-                <input type="text" id="mejorar" placeholder="¿Qué quieres mejorar?">
-                <button type="submit">Crear rutina</button>
-            </form>
-            <ul id="rutinasList"></ul>
-        </div>
+        <!-- MAIN CONTENT -->
+        <main class="main">
 
-        <!-- Apartado de recuento de calorías mediante foto -->
-        <div class="card">
-            <h2>Registro de Calorías con IA</h2>
-            <input type="file" id="fotoComida" accept="image/*">
-            <button id="analizarFoto">Analizar foto</button>
-            <p class="exercise-specs" id="resultadoFoto"></p>
-        </div>
+            <!-- FORM SECTION -->
+            <section class="form-section" id="formSection">
+                <div class="form-container">
+                    <h2>Crea tu rutina personalizada</h2>
 
-        <!-- Botón para eliminar datos -->
-        <div class="card">
-            <h2>Administrar almacenamiento</h2>
-            <button id="eliminarDatos">Eliminar todos los datos</button>
-        </div>
+                    <!-- PROGRESS INDICATOR -->
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="step-indicators">
+                            <div class="step-indicator active" data-step="1">
+                                <span class="step-number">1</span>
+                                <span class="step-label">Datos personales</span>
+                            </div>
+                            <div class="step-indicator" data-step="2">
+                                <span class="step-number">2</span>
+                                <span class="step-label">Nivel</span>
+                            </div>
+                            <div class="step-indicator" data-step="3">
+                                <span class="step-number">3</span>
+                                <span class="step-label">Deporte</span>
+                            </div>
+                            <div class="step-indicator" data-step="4">
+                                <span class="step-number">4</span>
+                                <span class="step-label">Objetivo</span>
+                            </div>
+                            <div class="step-indicator" data-step="5">
+                                <span class="step-number">5</span>
+                                <span class="step-label">Opciones</span>
+                            </div>
+                            <div class="step-indicator" data-step="6">
+                                <span class="step-number">6</span>
+                                <span class="step-label">Frecuencia</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FORMULARIO -->
+                    <form id="routineForm" class="routine-form">
+
+                        <!-- STEP 1: INFORMACIÓN PERSONAL -->
+                        <div class="form-step active" data-step="1">
+                            <h3 class="step-title">Información Personal</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="age">Edad</label>
+                                    <input type="number" id="age" name="age" min="13" max="80" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="weight">Peso (kg)</label>
+                                    <input type="number" id="weight" name="weight" min="30" max="200" step="0.1" required>
+                                </div>
+                                <div class="form-group span-2">
+                                    <label for="height">Altura (cm)</label>
+                                    <input type="number" id="height" name="height" min="140" max="220" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 2: NIVEL DE ENTRENAMIENTO -->
+                        <div class="form-step" data-step="2">
+                            <h3 class="step-title">Nivel de Entrenamiento</h3>
+                            <div class="form-grid">
+                                <div class="form-group span-2">
+                                    <label for="level">¿Cuál es tu nivel de entrenamiento?</label>
+                                    <select id="level" name="level" required>
+                                        <option value="">Selecciona tu nivel</option>
+                                        <option value="principiante">Principiante</option>
+                                        <option value="intermedio">Intermedio</option>
+                                        <option value="avanzado">Avanzado</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 3: SELECCIÓN DE DEPORTE -->
+                        <div class="form-step" data-step="3">
+                            <h3 class="step-title">Selección de Deporte</h3>
+                            <div class="form-grid">
+                                <div class="form-group span-2">
+                                    <label for="sport">¿Qué deporte practicas?</label>
+                                    <select id="sport" name="sport" required>
+                                        <option value="">Selecciona tu deporte</option>
+                                        <option value="fuerza">Entrenamiento de Fuerza</option>
+                                        <option value="amrap">AMRAP / CrossFit</option>
+                                        <option value="futbol">Fútbol</option>
+                                        <option value="baloncesto">Baloncesto</option>
+                                        <option value="correr">Running</option>
+                                        <option value="voley">Vóley</option>
+                                        <option value="natacion">Natación</option>
+                                        <option value="calistenia">Calistenia</option>
+                                        <option value="boxeo">Boxeo</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 4: OBJETIVO PRINCIPAL -->
+                        <div class="form-step" data-step="4">
+                            <h3 class="step-title">Objetivo Principal</h3>
+                            <div class="form-grid">
+                                <div class="form-group span-2">
+                                    <label for="objective">¿Cuál es tu objetivo principal?</label>
+                                    <select id="objective" name="objective" required>
+                                        <option value="">Selecciona tu objetivo</option>
+                                        <option value="fuerza">Aumentar Fuerza</option>
+                                        <option value="resistencia">Mejorar Resistencia</option>
+                                        <option value="perder-grasa">Perder Grasa</option>
+                                        <option value="tecnica">Mejorar Técnica</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 5: OPCIONES ADICIONALES -->
+                        <div class="form-step" data-step="5">
+                            <h3 class="step-title">Opciones Adicionales</h3>
+                            <div class="form-grid">
+                                <!-- Material AMRAP -->
+                                <div class="form-group span-2" id="materialGroup" style="display: none;">
+                                    <label for="material">Material disponible para AMRAP</label>
+                                    <div class="material-options">
+                                        <label class="checkbox-label"><input type="checkbox" name="material" value="kettlebells"> Kettlebells</label>
+                                        <label class="checkbox-label"><input type="checkbox" name="material" value="barras"> Barras y discos</label>
+                                        <label class="checkbox-label"><input type="checkbox" name="material" value="cajones"> Cajones para saltos</label>
+                                        <label class="checkbox-label"><input type="checkbox" name="material" value="cuerdas"> Cuerdas para saltar</label>
+                                        <label class="checkbox-label"><input type="checkbox" name="material" value="mancuernas"> Mancuernas</label>
+                                        <label class="checkbox-label"><input type="checkbox" name="material" value="wall-ball"> Pelotas medicinales</label>
+                                        <label class="checkbox-label"><input type="checkbox" name="material" value="ninguno"> Solo peso corporal</label>
+                                    </div>
+                                </div>
+
+                                <!-- Posición deportes de equipo -->
+                                <div class="form-group span-2" id="positionGroup" style="display: none;">
+                                    <label for="position">¿En qué posición juegas?</label>
+                                    <select id="position" name="position">
+                                        <option value="">Selecciona tu posición</option>
+                                        <!-- Se llena dinámicamente con JS -->
+                                    </select>
+                                </div>
+
+                                <!-- Mensaje de no opciones adicionales -->
+                                <div class="form-group span-2" id="noOptionsMessage" style="display: none;">
+                                    <div class="info-message">
+                                        <p>¡Perfecto! No hay opciones adicionales para tu deporte seleccionado.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 6: FRECUENCIA DE ENTRENAMIENTO -->
+                        <div class="form-step" data-step="6">
+                            <h3 class="step-title">Frecuencia de Entrenamiento</h3>
+                            <div class="form-grid">
+                                <div class="form-group span-2">
+                                    <label for="days">¿Cuántos días por semana quieres entrenar?</label>
+                                    <select id="days" name="days" required>
+                                        <option value="">Selecciona días por semana</option>
+                                        <option value="2">2 días</option>
+                                        <option value="3">3 días</option>
+                                        <option value="4">4 días</option>
+                                        <option value="5">5 días</option>
+                                        <option value="6">6 días</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- NAVIGATION BUTTONS -->
+                        <div class="form-navigation">
+                            <button type="button" class="btn-secondary" id="prevBtn" style="display: none;">Anterior</button>
+                            <div class="nav-spacer"></div>
+                            <button type="button" class="btn-primary" id="nextBtn">Siguiente</button>
+                            <button type="submit" class="btn-primary" id="submitBtn" style="display: none;">
+                                <span class="btn-text">Generar Rutina</span>
+                                <span class="btn-loading" style="display: none;">Generando...</span>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </section>
+
+            <!-- RESULTS SECTION -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-container">
+                    <div class="results-header">
+                        <h2>Tu rutina personalizada</h2>
+                        <div class="header-buttons">
+                            <button class="btn-download" id="downloadButton">Descargar Rutina</button>
+                            <button class="btn-secondary" id="backButton">Crear nueva rutina</button>
+                        </div>
+                    </div>
+                    <div class="routine-summary" id="routineSummary"></div>
+                    <div class="routine-days" id="routineDays"></div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>&copy; 2025 PrimeX. Desarrollado para atletas ambiciosos.</p>
+        </footer>
+
     </div>
 
     <script src="script.js"></script>
