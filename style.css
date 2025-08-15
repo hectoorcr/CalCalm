@@ -1,104 +1,119 @@
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+// Selección de elementos clave
+const formSteps = document.querySelectorAll('.form-step');
+const nextBtns = document.querySelectorAll('.btn-next');
+const prevBtns = document.querySelectorAll('.btn-prev');
+const progressFill = document.querySelector('.progress-fill');
+const stepIndicators = document.querySelectorAll('.step-indicator');
+const routineForm = document.querySelector('.routine-form');
+const resultsSection = document.querySelector('.results-section');
+
+let currentStep = 0;
+
+// Función para mostrar el paso actual
+function showStep(step) {
+    formSteps.forEach((formStep, index) => {
+        formStep.classList.toggle('active', index === step);
+    });
+
+    stepIndicators.forEach((indicator, index) => {
+        indicator.classList.remove('active', 'completed');
+        if (index < step) indicator.classList.add('completed');
+        if (index === step) indicator.classList.add('active');
+    });
+
+    const progressPercent = ((step) / (formSteps.length - 1)) * 100;
+    progressFill.style.width = `${progressPercent}%`;
 }
 
-body {
-    background-color: #f7fafc;
-    color: #2d3748;
-    line-height: 1.6;
+// Avanzar al siguiente paso
+nextBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        if (currentStep < formSteps.length - 1) {
+            currentStep++;
+            showStep(currentStep);
+        }
+    });
+});
+
+// Retroceder al paso anterior
+prevBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        if (currentStep > 0) {
+            currentStep--;
+            showStep(currentStep);
+        }
+    });
+});
+
+// Mostrar el primer paso al cargar
+showStep(currentStep);
+
+// Generar resultados al enviar formulario
+routineForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(routineForm);
+    const routine = {};
+
+    formData.forEach((value, key) => {
+        if (!routine[key]) {
+            routine[key] = value;
+        } else {
+            // Si ya existe, convertimos en array
+            routine[key] = [].concat(routine[key], value);
+        }
+    });
+
+    renderResults(routine);
+});
+
+// Función para renderizar resultados
+function renderResults(data) {
+    resultsSection.innerHTML = ''; // Limpiar contenido anterior
+
+    const header = document.createElement('div');
+    header.className = 'results-header';
+    header.innerHTML = `<h2>Tu Rutina Personalizada</h2>`;
+    resultsSection.appendChild(header);
+
+    const routineDays = document.createElement('div');
+    routineDays.className = 'routine-days';
+
+    Object.keys(data).forEach((dayKey) => {
+        const dayCard = document.createElement('div');
+        dayCard.className = 'day-card';
+        dayCard.innerHTML = `
+            <div class="day-header">
+                <div class="day-number">${dayKey}</div>
+                <div class="day-title">${data[dayKey]}</div>
+            </div>
+        `;
+        routineDays.appendChild(dayCard);
+    });
+
+    resultsSection.appendChild(routineDays);
+    resultsSection.scrollIntoView({ behavior: 'smooth' });
 }
 
-/* Contenedor principal */
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
+// Función opcional para descargar resultados como texto
+function downloadResults() {
+    let content = '';
+    Object.keys(routineForm.elements).forEach(key => {
+        const input = routineForm.elements[key];
+        if (input.name && input.value) {
+            content += `${input.name}: ${input.value}\n`;
+        }
+    });
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'rutina.txt';
+    a.click();
+    URL.revokeObjectURL(url);
 }
 
-/* Encabezados */
-h1, h2, h3, h4 {
-    color: #2d3748;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
-/* Botones */
-button {
-    background: linear-gradient(135deg, #4a90e2, #357ab7);
-    color: #fff;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-}
-
-/* Inputs */
-input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #cbd5e0;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    transition: all 0.3s ease;
-}
-
-input:focus {
-    border-color: #4a90e2;
-    outline: none;
-    box-shadow: 0 0 5px rgba(74,144,226,0.5);
-}
-
-/* Cards */
-.card {
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-    margin-bottom: 25px;
-}
-
-/* Tabla */
-.exercise-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.exercise-table th, .exercise-table td {
-    padding: 12px 15px;
-    border: 1px solid #e2e8f0;
-    text-align: left;
-}
-
-.exercise-table th {
-    background-color: #edf2f7;
-}
-
-/* Responsividad */
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    .exercise-table th, .exercise-table td {
-        padding: 10px;
-    }
-
-    button {
-        padding: 10px 20px;
-    }
+const downloadBtn = document.querySelector('.btn-download');
+if (downloadBtn) {
+    downloadBtn.addEventListener('click', downloadResults);
 }
