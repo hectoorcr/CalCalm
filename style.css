@@ -9,7 +9,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
     color: #333;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFD166 100%); /* Nuevo color de fondo vibrante */
     min-height: 100vh;
 }
 
@@ -71,7 +71,7 @@ body {
 }
 
 .progress-fill {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFD166 100%); /* Nuevo gradiente de la barra de progreso */
     height: 100%;
     width: 16.67%; /* 1/6 for first step */
     transition: width 0.3s ease;
@@ -116,12 +116,12 @@ body {
 }
 
 .step-indicator.active .step-number {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFD166 100%); /* Nuevo gradiente para el paso activo */
     color: white;
 }
 
 .step-indicator.completed .step-number {
-    background: #48bb78;
+    background: #48BB78; /* Color para los pasos completados, mantenido por su significado */
     color: white;
 }
 
@@ -236,14 +236,14 @@ body {
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #FF6B6B; /* Nuevo color de borde al hacer focus */
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1); /* Nueva sombra */
 }
 
 .btn-primary {
     width: 100%;
     padding: 1rem 2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFD166 100%); /* Nuevo gradiente para el botón primario */
     color: white;
     border: none;
     border-radius: 12px;
@@ -256,7 +256,7 @@ body {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3); /* Nueva sombra al hacer hover */
 }
 
 .btn-primary:active {
@@ -266,8 +266,8 @@ body {
 .btn-secondary {
     padding: 0.6rem 1.5rem;
     background: transparent;
-    color: #667eea;
-    border: 2px solid #667eea;
+    color: #FF6B6B; /* Nuevo color para el botón secundario */
+    border: 2px solid #FF6B6B; /* Nuevo color de borde */
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
@@ -275,13 +275,13 @@ body {
 }
 
 .btn-secondary:hover {
-    background: #667eea;
+    background: #FF6B6B; /* Nuevo color de fondo al hacer hover */
     color: white;
 }
 
 .btn-download {
     padding: 0.6rem 1.5rem;
-    background: #48bb78;
+    background: #06D6A0; /* Nuevo color para el botón de descarga */
     color: white;
     border: none;
     border-radius: 8px;
@@ -292,7 +292,7 @@ body {
 }
 
 .btn-download:hover {
-    background: #38a169;
+    background: #05A88C; /* Nuevo color al hacer hover */
     transform: translateY(-1px);
 }
 
@@ -361,7 +361,7 @@ body {
     padding: 1.5rem;
     border-radius: 15px;
     margin-bottom: 2rem;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid #FFD166; /* Nuevo color de borde en el resumen */
 }
 
 .summary-grid {
@@ -401,7 +401,7 @@ body {
 }
 
 .day-card:hover {
-    border-color: #667eea;
+    border-color: #FF6B6B; /* Nuevo color de borde al hacer hover */
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
@@ -415,7 +415,7 @@ body {
 }
 
 .day-number {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFD166 100%); /* Nuevo gradiente para el número del día */
     color: white;
     width: 40px;
     height: 40px;
@@ -460,7 +460,7 @@ body {
 }
 
 .rest-day {
-    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    background: linear-gradient(135deg, #06D6A0 0%, #118AB2 100%); /* Nuevo gradiente para el día de descanso */
     color: white;
     text-align: center;
     padding: 2rem;
