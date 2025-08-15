@@ -1,638 +1,126 @@
-/* Reset and Base Styles */
+/* Reset básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
+/* Body */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f7fafc;
+    color: #2d3748;
     line-height: 1.6;
-    color: #333;
-    background: linear-gradient(135deg, #FF6B6B 0%, #F08A5D 100%); /* Nuevo color de fondo vibrante */
-    min-height: 100vh;
 }
 
+/* Contenedor principal */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    padding: 20px;
 }
 
-/* Header Styles */
-.header {
-    text-align: center;
-    padding: 2rem 0;
-    color: white;
+/* Encabezados */
+h1, h2, h3, h4 {
+    color: #2d3748;
+    margin-bottom: 15px;
 }
 
-.logo h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+/* Botones */
+button {
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.logo p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    font-weight: 300;
+button:hover {
+    background-color: #357ab7;
 }
 
-/* Main Content */
-.main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Form Section */
-.form-section {
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
-}
-
-/* Progress Indicator */
-.progress-container {
-    margin-bottom: 2rem;
-}
-
-.progress-bar {
-    background: #e2e8f0;
-    height: 6px;
-    border-radius: 3px;
-    overflow: hidden;
-    margin-bottom: 1.5rem;
-}
-
-.progress-fill {
-    background: linear-gradient(135deg, #FF6B6B 0%, #F08A5D 100%); /* Nuevo gradiente de la barra de progreso */
-    height: 100%;
-    width: 16.67%; /* 1/6 for first step */
-    transition: width 0.3s ease;
-    border-radius: 3px;
-}
-
-.step-indicators {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 0.5rem;
-}
-
-.step-indicator {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-    opacity: 0.5;
-    transition: all 0.3s ease;
-}
-
-.step-indicator.active {
-    opacity: 1;
-}
-
-.step-indicator.completed {
-    opacity: 0.8;
-}
-
-.step-number {
-    background: #e2e8f0;
-    color: #718096;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 0.8rem;
-    transition: all 0.3s ease;
-}
-
-.step-indicator.active .step-number {
-    background: linear-gradient(135deg, #FFD166 0%, #F08A5D 100%); /* Nuevo gradiente para el paso activo */
-    color: white;
-}
-
-.step-indicator.completed .step-number {
-    background: #48BB78; /* Color para los pasos completados, mantenido por su significado */
-    color: white;
-}
-
-.step-label {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: #718096;
-    text-align: center;
-}
-
-.step-indicator.active .step-label {
-    color: #4a5568;
-    font-weight: 600;
-}
-
-/* Form Steps */
-.form-step {
-    display: none;
-    animation: fadeInStep 0.3s ease-out;
-}
-
-.form-step.active {
-    display: block;
-}
-
-.step-title {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #4a5568;
-    font-size: 1.4rem;
-    font-weight: 600;
-}
-
-/* Form Navigation */
-.form-navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2rem;
-    gap: 1rem;
-}
-
-.nav-spacer {
-    flex: 1;
-}
-
-/* Info Message */
-.info-message {
-    background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
-    border: 2px solid #48bb78;
-    border-radius: 12px;
-    padding: 1.5rem;
-    text-align: center;
-}
-
-.info-message p {
-    color: #22543d;
-    font-weight: 500;
-    margin: 0;
-}
-
-.form-container {
-    padding: 2.5rem;
-}
-
-.form-container h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #4a5568;
-    font-size: 1.8rem;
-    font-weight: 600;
-}
-
-.routine-form {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group.span-2 {
-    grid-column: span 2;
-}
-
-.form-group label {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #4a5568;
-    font-size: 0.9rem;
-}
-
-.form-group input,
-.form-group select {
-    padding: 0.75rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background: white;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: #F08A5D; /* Nuevo color de borde al hacer focus */
-    box-shadow: 0 0 0 3px rgba(240, 138, 93, 0.1); /* Nueva sombra */
-}
-
-.btn-primary {
+/* Inputs y textareas */
+input, textarea {
     width: 100%;
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, #FF6B6B 0%, #F08A5D 100%); /* Nuevo gradiente para el botón primario */
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3); /* Nueva sombra al hacer hover */
-}
-
-.btn-primary:active {
-    transform: translateY(0);
-}
-
-.btn-secondary {
-    padding: 0.6rem 1.5rem;
-    background: transparent;
-    color: #FF6B6B; /* Nuevo color para el botón secundario */
-    border: 2px solid #FF6B6B; /* Nuevo color de borde */
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-secondary:hover {
-    background: #FF6B6B; /* Nuevo color de fondo al hacer hover */
-    color: white;
-}
-
-.btn-download {
-    padding: 0.6rem 1.5rem;
-    background: #FFD166; /* Nuevo color para el botón de descarga */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-right: 1rem;
-}
-
-.btn-download:hover {
-    background: #F0A500; /* Nuevo color al hacer hover */
-    transform: translateY(-1px);
-}
-
-.header-buttons {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
-.material-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-}
-
-.checkbox-label {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem;
-    background: #f7fafc;
+    padding: 10px;
+    border: 1px solid #cbd5e0;
     border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
 }
 
-.checkbox-label:hover {
-    background: #edf2f7;
+input:focus, textarea:focus {
+    border-color: #4a90e2;
+    outline: none;
 }
 
-.checkbox-label input[type="checkbox"] {
-    margin-right: 0.5rem;
-    transform: scale(1.1);
-}
-
-/* Results Section */
-.results-section {
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
-}
-
-.results-container {
-    padding: 2.5rem;
-}
-
-.results-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.results-header h2 {
-    color: #4a5568;
-    font-size: 1.8rem;
-    font-weight: 600;
-}
-
-.routine-summary {
-    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-    padding: 1.5rem;
-    border-radius: 15px;
-    margin-bottom: 2rem;
-    border-left: 4px solid #FFD166; /* Nuevo color de borde en el resumen */
-}
-
-.summary-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-}
-
-.summary-item {
-    text-align: center;
-}
-
-.summary-label {
-    font-size: 0.85rem;
-    color: #718096;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-}
-
-.summary-value {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #4a5568;
-}
-
-.routine-days {
-    display: grid;
-    gap: 1.5rem;
-}
-
-.day-card {
-    background: white;
-    border: 2px solid #e2e8f0;
-    border-radius: 15px;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.day-card:hover {
-    border-color: #FF6B6B; /* Nuevo color de borde al hacer hover */
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.day-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid #f7fafc;
-}
-
-.day-number {
-    background: linear-gradient(135deg, #FF6B6B 0%, #F08A5D 100%); /* Nuevo gradiente para el número del día */
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    margin-right: 1rem;
-}
-
-.day-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #4a5568;
-}
-
-.exercise-list {
-    display: grid;
-    gap: 0.75rem;
-}
-
-.exercise-item {
-    background: #f7fafc;
-    padding: 1rem;
+/* Cards o secciones de contenido */
+.card {
+    background-color: #fff;
     border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
 }
 
-.exercise-name {
-    font-weight: 600;
-    color: #4a5568;
-    flex: 1;
+/* Listas */
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
 }
 
+li {
+    margin-bottom: 10px;
+}
+
+/* Tabla de ejercicios */
+.exercise-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.exercise-table th, .exercise-table td {
+    padding: 12px 15px;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+.exercise-table th {
+    background-color: #edf2f7;
+}
+
+/* Especificaciones de ejercicios */
 .exercise-specs {
     color: #718096;
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 0.95rem;
+    margin-top: 5px;
 }
 
-.rest-day {
-    background: linear-gradient(135deg, #06D6A0 0%, #118AB2 100%); /* Nuevo gradiente para el día de descanso */
-    color: white;
-    text-align: center;
-    padding: 2rem;
-    border-radius: 15px;
+/* Enlaces */
+a {
+    color: #4a90e2;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
-.rest-day h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+a:hover {
+    color: #357ab7;
 }
 
-/* Footer */
-.footer {
-    text-align: center;
-    padding: 1.5rem 0;
-    color: rgba(255,255,255,0.8);
-    font-size: 0.9rem;
-}
-
-/* Loading State */
-.btn-loading {
-    display: inline-block;
-}
-
-/* Responsive Design */
+/* Responsividad */
 @media (max-width: 768px) {
     .container {
-        padding: 0 15px;
+        padding: 15px;
     }
-    
-    .logo h1 {
-        font-size: 2.5rem;
-    }
-    
-    .form-container,
-    .results-container {
-        padding: 1.5rem;
-    }
-    
-    .form-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .form-group.span-2 {
-        grid-column: span 1;
-    }
-    
-    .results-header {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .header-buttons {
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    .btn-download {
-        margin-right: 0;
-        margin-bottom: 0.5rem;
-    }
-    
-    .material-options {
-        grid-template-columns: 1fr;
-    }
-    
-    .results-header h2 {
-        font-size: 1.5rem;
-    }
-    
-    .step-indicators {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.25rem;
-    }
-    
-    .step-indicator:nth-child(n+4) {
-        display: none;
-    }
-    
-    .step-label {
-        font-size: 0.65rem;
-    }
-    
-    .step-number {
-        width: 24px;
-        height: 24px;
-        font-size: 0.7rem;
-    }
-    
-    .form-navigation {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .nav-spacer {
-        display: none;
-    }
-    
-    .summary-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .day-header {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .day-number {
-        margin-right: 0;
-        margin-bottom: 0.5rem;
-    }
-    
-    .exercise-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-}
 
-@media (max-width: 480px) {
-    .logo h1 {
-        font-size: 2rem;
+    h1 {
+        font-size: 1.8rem;
     }
-    
-    .form-container,
-    .results-container {
-        padding: 1rem;
-    }
-    
-    .form-container h2,
-    .results-header h2 {
-        font-size: 1.4rem;
-    }
-}
 
-/* Animation Classes */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+    .exercise-table th, .exercise-table td {
+        padding: 10px;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInStep {
-    from {
-        opacity: 0;
-        transform: translateX(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.fade-in {
-    animation: fadeIn 0.6s ease-out;
-}
-
-/* Utility Classes */
-.text-center {
-    text-align: center;
-}
-
-.mb-1 {
-    margin-bottom: 1rem;
-}
-
-.mt-1 {
-    margin-top: 1rem;
 }
