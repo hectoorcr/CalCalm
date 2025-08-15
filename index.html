@@ -3,36 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Dashboard de Ejercicios</title>
+    <title>CalCalm - Recuento de Calorías y Rutinas</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Dashboard de Ejercicios</h1>
+        <h1>CalCalm</h1>
 
-        <!-- Formulario para agregar ejercicio -->
+        <!-- Formulario de datos personales -->
         <div class="card">
-            <h2>Agregar ejercicio</h2>
-            <input type="text" id="exercise-name" placeholder="Nombre del ejercicio">
-            <input type="text" id="exercise-specs" placeholder="Especificaciones">
-            <button id="add-exercise">Agregar</button>
+            <h2>Datos Personales</h2>
+            <form id="personalDataForm">
+                <input type="number" id="edad" placeholder="Edad" required>
+                <input type="number" id="altura" placeholder="Altura (cm)" required>
+                <input type="number" id="peso" placeholder="Peso (kg)" required>
+                <select id="objetivo">
+                    <option value="">Selecciona tu objetivo</option>
+                    <option value="perder">Perder peso</option>
+                    <option value="ganar">Ganar peso</option>
+                    <option value="mantener">Mantener peso</option>
+                </select>
+                <button type="submit">Calcular calorías</button>
+            </form>
+            <p class="exercise-specs" id="caloriasResult"></p>
         </div>
 
-        <!-- Tabla de ejercicios -->
+        <!-- Apartado de rutinas -->
         <div class="card">
-            <h2>Lista de ejercicios</h2>
-            <table class="exercise-table">
-                <thead>
-                    <tr>
-                        <th>Ejercicio</th>
-                        <th>Especificaciones</th>
-                        <th>Acción</th>
-                    </tr>
-                </thead>
-                <tbody id="exercise-table-body">
-                    <!-- Filas generadas con JS -->
-                </tbody>
-            </table>
+            <h2>Rutinas Personalizadas</h2>
+            <form id="rutinaForm">
+                <select id="deporte">
+                    <option value="">Selecciona un deporte</option>
+                    <option value="calistenia">Calistenia</option>
+                    <option value="gym">Gym</option>
+                    <option value="amrap">AMRAP</option>
+                    <option value="basket">Basket</option>
+                    <option value="futbol">Fútbol</option>
+                    <option value="natacion">Natación</option>
+                    <option value="voley">Vóley</option>
+                    <option value="bici">Bici</option>
+                    <option value="boxeo">Boxeo</option>
+                    <option value="artesmarciales">Artes Marciales</option>
+                </select>
+                <input type="text" id="mejorar" placeholder="¿Qué quieres mejorar?">
+                <button type="submit">Crear rutina</button>
+            </form>
+            <ul id="rutinasList"></ul>
+        </div>
+
+        <!-- Apartado de recuento de calorías mediante foto -->
+        <div class="card">
+            <h2>Registro de Calorías con IA</h2>
+            <input type="file" id="fotoComida" accept="image/*">
+            <button id="analizarFoto">Analizar foto</button>
+            <p class="exercise-specs" id="resultadoFoto"></p>
+        </div>
+
+        <!-- Botón para eliminar datos -->
+        <div class="card">
+            <h2>Administrar almacenamiento</h2>
+            <button id="eliminarDatos">Eliminar todos los datos</button>
         </div>
     </div>
 
